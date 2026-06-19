@@ -4,6 +4,7 @@ const products = [
         id: 1,
         title: "ZenPaws Calming Orthopedic Bed",
         emoji: "💤",
+        image: "calming_bed.jpg",
         desc: "Premium, human-grade memory foam base with self-warming, anxiety-soothing bolsters.",
         price: 69.99,
         wholesaleCost: 18.50
@@ -12,6 +13,7 @@ const products = [
         id: 2,
         title: "ZenPaws Ergonomic Bowl System",
         emoji: "🥣",
+        image: "bowl_system.jpg",
         desc: "Veterinarian-recommended elevated bowl setup with a 15-degree tilt for seamless digestion.",
         price: 49.99,
         wholesaleCost: 12.00
@@ -20,6 +22,7 @@ const products = [
         id: 3,
         title: "ZenPaws Smart Interactive Dispenser",
         emoji: "🤖",
+        image: "smart_dispenser.jpg",
         desc: "Keep your pet active and rewarded with automated laser play and treat launching features.",
         price: 89.99,
         wholesaleCost: 24.00
@@ -47,7 +50,9 @@ function renderCatalog() {
         const card = document.createElement("div");
         card.className = "product-card";
         card.innerHTML = `
-            <div class="product-thumb">${p.emoji}</div>
+            <div class="product-thumb">
+                <img src="${p.image}" alt="${p.title}" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
             <div class="product-body">
                 <h3>${p.title}</h3>
                 <p>${p.desc}</p>
@@ -110,7 +115,9 @@ function updateCartUI() {
         const itemEl = document.createElement("div");
         itemEl.className = "cart-item";
         itemEl.innerHTML = `
-            <div class="cart-item-thumb">${item.emoji}</div>
+            <div class="cart-item-thumb">
+                <img src="${item.image}" alt="${item.title}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
+            </div>
             <div class="cart-item-info">
                 <h4>${item.title}</h4>
                 <span>$${item.price.toFixed(2)}</span>
