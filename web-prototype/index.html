@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZenPaws — Premium Ergonomic Pet Wellness</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top Alert Bar -->
+    <div class="alert-bar">
+        <span>🎉 Summer Wellness Sale: Free Express Shipping on all orders over $50</span>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-area">
+                <img src="logo.jpg" alt="ZenPaws Logo" class="logo-img" style="height: 32px; width: 32px; border-radius: 50%; object-fit: cover; border: 1px solid rgba(31, 62, 61, 0.15);">
+                <span class="logo-text">ZenPaws</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#shop">Shop</a></li>
+                <li><a href="#philosophy">Our Philosophy</a></li>
+                <li><a href="#pipeline-demo" class="demo-pill">See How It Works</a></li>
+            </ul>
+            <div class="nav-cart" onclick="toggleCart()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                <span class="cart-count">0</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <span class="badge">Ergonomic & Calming Design</span>
+                <h1>Restorative Comfort for Your Best Friend</h1>
+                <p>Veterinarian-recommended beds and accessories scientifically designed to soothe anxiety and protect your pet's joints.</p>
+                <div class="hero-actions">
+                    <a href="#shop" class="btn btn-primary">Shop the Collection</a>
+                    <a href="#pipeline-demo" class="btn btn-secondary">Interactive Pipeline Demo</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <!-- Mock image card showcasing the calming bed -->
+                <div class="promo-card">
+                    <div class="promo-badge">Best Seller</div>
+                    <div class="promo-img-placeholder">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="placeholder-icon">
+                            <path d="M12 21a9 9 0 0 0 9-9 9 9 0 0 0-9-9 9 9 0 0 0-9 9 9 9 0 0 0 9 9z"/>
+                            <path d="M12 12m-3 0a3 3 0 1 0 6 0 3 3 0 1 0 -6 0"/>
+                        </svg>
+                    </div>
+                    <div class="promo-info">
+                        <h3>ZenPaws Calming Bed</h3>
+                        <div class="price-rating">
+                            <span class="promo-price">$69.99</span>
+                            <span class="promo-rating">⭐ 4.9 (420+ reviews)</span>
+                        </div>
+                        <button class="btn btn-primary btn-sm" onclick="quickAdd(1)">Quick Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Philosophy/Features -->
+    <section class="philosophy" id="philosophy">
+        <div class="container">
+            <h2 class="section-title">Designed for Balance & Wellness</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Joint & Joint Protection</h3>
+                    <p>Orthopedic pressure-relief foam helps protect senior dogs' joints and supports skeletal growth in puppies.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌿</div>
+                    <h3>Hypoallergenic Materials</h3>
+                    <p>Only skin-friendly, organic cotton fibers and heavy-duty zippers that handle chewers and scratchers alike.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🐾</div>
+                    <h3>Anti-Anxiety Bolsters</h3>
+                    <p>Designed with raised boundaries that mimic natural denning instincts, reducing cortisols and stress.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Catalog -->
+    <section class="catalog" id="shop">
+        <div class="container">
+            <h2 class="section-title">Shop Our Science-Backed Catalog</h2>
+            <p class="section-subtitle">Maximize your pet's life quality. Select a product to add to your order.</p>
+            <div class="catalog-grid" id="product-list">
+                <!-- Products dynamically rendered here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Pipeline Demo Section -->
+    <section class="pipeline-demo-sec" id="pipeline-demo">
+        <div class="container">
+            <div class="demo-layout">
+                <div class="demo-info-panel">
+                    <span class="badge badge-accent">The Behind-the-Scenes Pipeline</span>
+                    <h2>How the Dropshipping Engine Works</h2>
+                    <p>Dropshipping operates on a lean automated workflow. When a customer buys on the store, our backend routes order details and wholesale costs directly to the regional supplier warehouse, keeping the retail margin as profit.</p>
+                    
+                    <div class="pipeline-steps-vertical">
+                        <div class="p-step active" id="pstep-1">
+                            <div class="p-step-num">1</div>
+                            <div class="p-step-text">
+                                <h4>Customer Checkout</h4>
+                                <p>Customer pays the retail price on the ZenPaws storefront.</p>
+                            </div>
+                        </div>
+                        <div class="p-step" id="pstep-2">
+                            <div class="p-step-num">2</div>
+                            <div class="p-step-text">
+                                <h4>Supplier Order Auto-Routing</h4>
+                                <p>Automated software (AutoDS/Zendrop) routes details and sends wholesale cost to the supplier.</p>
+                            </div>
+                        </div>
+                        <div class="p-step" id="pstep-3">
+                            <div class="p-step-num">3</div>
+                            <div class="p-step-text">
+                                <h4>Supplier Delivery & Tracking</h4>
+                                <p>Supplier ships directly to the customer and auto-updates the tracking info.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="demo-visual-panel">
+                    <div class="pipeline-dashboard">
+                        <div class="dashboard-header">
+                            <h3>ZenPaws Live Pipeline Simulator</h3>
+                            <span class="pulse-indicator">● Operational</span>
+                        </div>
+                        
+                        <div class="dashboard-stats">
+                            <div class="stat-card">
+                                <label>Retail Revenue</label>
+                                <span class="stat-val" id="dash-revenue">$0.00</span>
+                            </div>
+                            <div class="stat-card">
+                                <label>Wholesale Cost</label>
+                                <span class="stat-val text-red" id="dash-cost">$0.00</span>
+                            </div>
+                            <div class="stat-card">
+                                <label>Net Profit Margin</label>
+                                <span class="stat-val text-green" id="dash-profit">$0.00</span>
+                            </div>
+                        </div>
+
+                        <div class="dashboard-console">
+                            <div class="console-title">Fulfillment Pipeline Logs</div>
+                            <div class="console-body" id="console-logs">
+                                <div class="log-line text-muted">> Pipeline initialized. Select a product above to simulate order lifecycle...</div>
+                            </div>
+                        </div>
+
+                        <div class="dashboard-actions">
+                            <button class="btn btn-accent btn-block" onclick="startSimulatedCheckout()">Simulate Sample Order Flow</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shopping Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Your Shopping Cart</h3>
+            <button class="close-btn" onclick="toggleCart()">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItemsList">
+            <div class="empty-cart-message">Your cart is empty.</div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total-row">
+                <span>Total:</span>
+                <span id="cartTotalVal">$0.00</span>
+            </div>
+            <button class="btn btn-primary btn-block" onclick="checkoutCart()">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Checkout / Pipeline Animation Modal -->
+    <div class="modal" id="checkoutModal">
+        <div class="modal-content">
+            <button class="close-btn modal-close" onclick="closeModal()">&times;</button>
+            <div id="checkout-phase-form">
+                <h2>Secure Checkout</h2>
+                <p>Complete mock order details to trigger the backend dropshipping process.</p>
+                <form id="orderForm" onsubmit="submitMockOrder(event)">
+                    <div class="form-group">
+                        <label for="custName">Full Name</label>
+                        <input type="text" id="custName" required placeholder="Alex Mercer" value="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label for="custAddress">Delivery Address</label>
+                        <input type="text" id="custAddress" required placeholder="123 Cozy Lane, Austin, TX" value="742 Evergreen Terrace, Springfield">
+                    </div>
+                    <div class="form-group">
+                        <label for="custEmail">Email Address</label>
+                        <input type="email" id="custEmail" required placeholder="alex@example.com" value="john.doe@example.com">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cardNum">Card Number (Mock Stripe)</label>
+                            <input type="text" id="cardNum" required placeholder="4242 4242 4242 4242" value="4242 4242 4242 4242">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-accent btn-block">Pay Now & Start Pipeline</button>
+                </form>
+            </div>
+
+            <!-- Interactive pipeline visual stepper -->
+            <div id="checkout-phase-pipeline" style="display: none;">
+                <h2>Automated Order Fulfillment Stepper</h2>
+                <p>Observe how data, funds, and tracking flow across our dropshipping pipeline in real-time.</p>
+                
+                <div class="stepper-visual">
+                    <div class="step-circle s1 active" id="step-c1">💳</div>
+                    <div class="step-line sl1" id="step-l1"></div>
+                    <div class="step-circle s2" id="step-c2">⚙️</div>
+                    <div class="step-line sl2" id="step-l2"></div>
+                    <div class="step-circle s3" id="step-c3">📦</div>
+                </div>
+
+                <div class="stepper-status-box">
+                    <h3 id="stepper-title">Clearing Customer Payment</h3>
+                    <p id="stepper-desc">Stripe payment gateway is authorization of $69.99...</p>
+                </div>
+
+                <div class="stepper-accounting">
+                    <div class="acc-row">
+                        <span>Customer Retail Payment (+):</span>
+                        <span id="acc-retail">$0.00</span>
+                    </div>
+                    <div class="acc-row text-red">
+                        <span>Supplier Wholesale Payment (-):</span>
+                        <span id="acc-wholesale">$0.00</span>
+                    </div>
+                    <hr>
+                    <div class="acc-row text-green text-bold">
+                        <span>Net Profit Kept:</span>
+                        <span id="acc-profit">$0.00</span>
+                    </div>
+                </div>
+
+                <div class="modal-footer" id="modal-footer-actions" style="visibility: hidden;">
+                    <button class="btn btn-primary" onclick="closeModal()">Return to Store</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 ZenPaws. Built as an interactive dropshipping pipeline demonstrator.</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
