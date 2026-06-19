@@ -216,3 +216,33 @@ When running automated posting scripts (`social_scheduler.py`) from local machin
 ### D. Use Official APIs (No Browser Emulation)
 *   **Why our script is safe:** The provided script utilizes **Official Graph APIs** rather than browser automation (like Selenium or Puppeteer). Official API calls do not trigger browser fingerprint checks (such as screen resolution or canvas hashes) and are highly trusted by Meta's security filters.
 
+---
+
+## 7. Meta & TikTok Ads Policy Compliance & Restriction Guardrails
+
+When launching paid advertising campaigns, platforms employ strict automated AI models to review ads, landing pages, and accounts. A single policy violation can trigger a permanent Business Manager or Ad Account restriction. Adhere to these guardrails to safeguard your advertising assets:
+
+### A. Ad Copy & Creative Compliance (Wellness Claims)
+Since ZenPaws is a pet wellness brand, the ad creatives and copywriting must avoid high-risk policy flags:
+*   **No Unsubstantiated Health Claims:** Meticulously avoid language promising medical "cures" or "instant relief" for pet anxiety or joint pain.
+    *   *Mislabeled (High Risk):* "Cures dog joint pain in 7 days." / "Guaranteed to stop cat anxiety."
+    *   *Compliant (Safe):* "Supports natural joint comfort." / "Helps create a soothing environment for nervous cats."
+*   **No Before-and-After Imagery:** Do not use side-by-side comparison images showing an injured/anxious pet vs. a healthy pet. Meta's image classifier flags these automatically.
+*   **Avoid Sensational/Shock Content:** Do not feature distressed, crying, or neglected pets in the creative to gain attention. Meta and TikTok restrict ads depicting suffering.
+
+### B. Business Manager & Domain Reputation
+*   **Complete Business Verification:** Verify your Meta Business Manager with official company incorporation/registration documents and utility bills. Unverified BMs launching high-budget ads are frequently restricted.
+*   **Domain Verification:** Verify the `zenpaws.com` domain inside the Meta Business Settings (under Brand Safety) by adding a TXT DNS record. Meta flags ads linking to unverified or new domains as untrusted.
+*   **Customer Feedback Score Protection:** Once ads run, Meta polls buyers on delivery speed and product quality. If your Page Feedback Score falls below **2.0**, your ad reach will be penalized; if it falls below **1.0**, the Page is banned.
+    *   *Guardrail:* Ensure dropshipping fulfillment (tracking info upload) happens within 48 hours and set realistic shipping timelines (e.g., 7–14 days) in the ad copy/landing page.
+
+### C. Ad Account Warm-up & Spending Patterns
+*   **Avoid Sudden Budget Spikes:** Do not start a brand-new ad account with a $500/day budget. This triggers Meta's automated payment and spam security alerts.
+*   **Incremental Scaling:** Begin with a low budget ($10 to $20 per day) for 5–7 days to build trust. Once the first billing threshold is successfully charged, scale budgets by no more than **20–30% daily**.
+*   **Clear Card History:** Use a credit card with the same name and address as your Business Manager profile. Mismatched billing names or cards associated with previously banned accounts will cause immediate, automatic bans.
+
+### D. Safe Operations (IP and Muted Login Locations)
+*   **Consistently Access from a Single Location:** Mismatch of IP addresses (e.g., logging into Meta Ads Manager from a VPN or remote server) triggers security checkpoints.
+*   **Guardrail:** Mute VPNs or keep them set to your home/business residential location when managing Ads Manager. Ensure anyone else managing the ads uses their own Facebook account invited via the BM rather than sharing login credentials.
+
+
