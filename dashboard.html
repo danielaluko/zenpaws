@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZenPaws Metropolis — AI Agent City Manager</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <!-- Top Game Stats Bar -->
+    <div class="top-stats-bar">
+        <div class="stats-left">
+            <div class="stat-item city-title">
+                <span class="stat-label">CITY NAME</span>
+                <span class="stat-value text-accent">ZenPaws Metropolis</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">LEVEL</span>
+                <div class="level-indicator">
+                    <span class="level-badge" id="city-level-badge">1</span>
+                    <span class="level-name" id="city-level-name">Little Hamlet</span>
+                </div>
+            </div>
+            <div class="stat-item xp-container">
+                <span class="stat-label">METROPOLIS PROGRESS</span>
+                <div class="xp-bar-bg">
+                    <div class="xp-bar-fill" id="city-xp-fill" style="width: 0%;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chirper Alert Icon (Center) -->
+        <div class="chirper-trigger active" onclick="toggleChirper()">
+            <div class="chirper-bird">🐦</div>
+            <span class="chirper-badge" id="chirp-alert-count">3</span>
+        </div>
+
+        <div class="stats-right">
+            <div class="stat-item">
+                <span class="stat-label">POPULATION (CUSTOMERS)</span>
+                <span class="stat-value" id="city-population">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">HAPPINESS</span>
+                <span class="stat-value text-green" id="city-happiness">100%</span>
+            </div>
+            <div class="stat-item treasury-card">
+                <span class="stat-label">TREASURY BALANCE</span>
+                <div class="treasury-val">
+                    <span class="currency">$</span>
+                    <span class="stat-value text-green" id="city-treasury">0.00</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chirper Feed Overlay Box -->
+    <div class="chirper-panel" id="chirperPanel">
+        <div class="chirper-header">
+            <h3>Chirper Live Feed</h3>
+            <button class="close-btn" onclick="toggleChirper()">&times;</button>
+        </div>
+        <div class="chirper-body" id="chirper-feed">
+            <div class="chirp-msg system">
+                <span class="chirp-user">@System</span>
+                <p>Welcome to ZenPaws Metropolis! Automations initialized. Load zoning map...</p>
+                <span class="chirp-time">Just Now</span>
+            </div>
+            <div class="chirp-msg">
+                <span class="chirp-user">@Nova_Researcher</span>
+                <p>Spotted high search volume on Google Trends for calming orthopedic pet beds! Suggesting list build.</p>
+                <span class="chirp-time">2 mins ago</span>
+            </div>
+            <div class="chirp-msg">
+                <span class="chirp-user">@Forge_Creator</span>
+                <p>Printify synced. Calming Bed designs successfully listed on Etsy store! Let's get these sales.</p>
+                <span class="chirp-time">1 min ago</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main City Layout Grid -->
+    <div class="city-map-container">
+        <!-- Background Grid Layout -->
+        <div class="city-grid-lines"></div>
+
+        <!-- Simulated Districts/Zones -->
+        <div class="districts-container">
+            <!-- Residential Zone (Green) - Customer Demand -->
+            <div class="district residential-zone" id="district-residential">
+                <div class="district-header">Residential District</div>
+                <div class="district-body">
+                    <div class="zone-building house">🏠</div>
+                    <div class="zone-building house">🏡</div>
+                    <div class="zone-building house">🏠</div>
+                </div>
+                <div class="zone-tag">Customer Demand</div>
+            </div>
+
+            <!-- Commercial Zone (Blue) - ZenPaws E-commerce Store -->
+            <div class="district commercial-zone" id="district-commercial">
+                <div class="district-header">Commercial Center</div>
+                <div class="district-body">
+                    <div class="zone-building store">🏪</div>
+                    <div class="zone-building mall">🏢</div>
+                </div>
+                <div class="zone-tag">Storefront & Checkout</div>
+            </div>
+
+            <!-- Industrial Zone (Yellow) - Dropshipping Warehouse -->
+            <div class="district industrial-zone" id="district-industrial">
+                <div class="district-header">Industrial Park</div>
+                <div class="district-body">
+                    <div class="zone-building factory">🏭</div>
+                    <div class="zone-building warehouse">📦</div>
+                </div>
+                <div class="zone-tag">Supplier Fulfillment</div>
+            </div>
+        </div>
+
+        <!-- Simulated Shipping Truck / Logistics path -->
+        <div class="logistics-road">
+            <div class="road-horizontal"></div>
+            <div class="delivery-truck" id="delivery-truck" style="display: none;">🚚</div>
+        </div>
+    </div>
+
+    <!-- Bottom Controls & Tool Selection Bar -->
+    <div class="bottom-controls-bar">
+        <div class="controls-left">
+            <!-- Simulation speed controllers -->
+            <div class="speed-control">
+                <button class="speed-btn active" id="speed-1x" onclick="setSimSpeed(1)">▶</button>
+                <button class="speed-btn" id="speed-2x" onclick="setSimSpeed(2)">▶▶</button>
+                <button class="speed-btn" id="speed-3x" onclick="setSimSpeed(3)">▶▶▶</button>
+                <button class="speed-btn" id="speed-pause" onclick="setSimSpeed(0)">⏸</button>
+            </div>
+            <div class="sim-clock" id="sim-clock">June 19, 18:48</div>
+        </div>
+
+        <!-- Main Tool Menu Buttons (Cities Skylines Style Icons/Tabs) -->
+        <div class="tool-menu">
+            <button class="tool-btn" onclick="openSubmenu('budget')">
+                <span class="tool-icon">💵</span>
+                <span class="tool-text">Budget</span>
+            </button>
+            <button class="tool-btn" onclick="openSubmenu('utilities')">
+                <span class="tool-icon">⚡</span>
+                <span class="tool-text">Services</span>
+            </button>
+            <button class="tool-btn" onclick="openSubmenu('crew')">
+                <span class="tool-icon">👥</span>
+                <span class="tool-text">Ship Crew</span>
+            </button>
+            <button class="tool-btn highlight" onclick="triggerSimulatedSale()">
+                <span class="tool-icon">➕</span>
+                <span class="tool-text">Simulate Order</span>
+            </button>
+        </div>
+
+        <div class="controls-right">
+            <!-- Return to Store -->
+            <a href="index.html" class="btn-return-store">🏬 Go to Front Store</a>
+        </div>
+    </div>
+
+    <!-- Submenu Modals (Tabs) -->
+    <div class="submenu-modal" id="submenu-budget">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h2>Treasury Ledger & Budget Sheets</h2>
+                <button class="close-btn" onclick="closeSubmenu()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="budget-columns">
+                    <div class="budget-col">
+                        <h3 class="text-green">Income (Weekly Revenue)</h3>
+                        <div class="ledger-row">
+                            <span>Stripe Payments (Storefront Sales)</span>
+                            <span class="text-green" id="ledger-retail">$0.00</span>
+                        </div>
+                    </div>
+                    <div class="budget-col">
+                        <h3 class="text-red">Expenses (Costs & Overheads)</h3>
+                        <div class="ledger-row">
+                            <span>Printify Wholesale Orders</span>
+                            <span class="text-red" id="ledger-wholesale">$0.00</span>
+                        </div>
+                        <div class="ledger-row">
+                            <span>Meta Ad Campaign Budget</span>
+                            <span class="text-red" id="ledger-ads">$0.00</span>
+                        </div>
+                    </div>
+                </div>
+                <hr class="divider">
+                <div class="budget-footer-summary">
+                    <span>Net Profit Surplus:</span>
+                    <span class="text-green text-bold" id="ledger-profit">$0.00</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="submenu-modal" id="submenu-utilities">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h2>City Infrastructure & Utilities</h2>
+                <button class="close-btn" onclick="closeSubmenu()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="utilities-grid">
+                    <div class="utility-card">
+                        <div class="utility-header">
+                            <span class="utility-icon">⚡</span>
+                            <h4>Storefront Server Uptime</h4>
+                        </div>
+                        <span class="utility-status green">ONLINE (100%)</span>
+                        <p class="utility-desc">Local preview hosting running stable on Port 8000.</p>
+                    </div>
+                    <div class="utility-card">
+                        <div class="utility-header">
+                            <span class="utility-icon">📡</span>
+                            <h4>Social Media Scheduler</h4>
+                        </div>
+                        <span class="utility-status green">OPERATIONAL</span>
+                        <p class="utility-desc">Instagram Reels Rate Limit: 0 / 25 posts remaining.</p>
+                    </div>
+                    <div class="utility-card">
+                        <div class="utility-header">
+                            <span class="utility-icon">🎬</span>
+                            <h4>Creative Ad Generator</h4>
+                        </div>
+                        <span class="utility-status yellow">IDLE</span>
+                        <p class="utility-desc">Video ad generation pipeline ready. Last output: zenpaws_calming_bed_ad.mp4</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="submenu-modal" id="submenu-crew">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h2>Ship Crew AI Agent Status</h2>
+                <button class="close-btn" onclick="closeSubmenu()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="crew-list">
+                    <div class="crew-member">
+                        <div class="crew-avatar">🧑‍✈️</div>
+                        <div class="crew-info">
+                            <h4>Andrew</h4>
+                            <span class="badge badge-primary">Commander / Human Owner</span>
+                            <p>Authorizing budgets and managing overall city expansion goals.</p>
+                        </div>
+                        <span class="member-status green">Active</span>
+                    </div>
+                    <div class="crew-member">
+                        <div class="crew-avatar">🧠</div>
+                        <div class="crew-info">
+                            <h4>Ultron</h4>
+                            <span class="badge badge-accent">Main AI Orchestrator</span>
+                            <p>Managing state operations and executing background n8n automation loops.</p>
+                        </div>
+                        <span class="member-status green">Active</span>
+                    </div>
+                    <div class="crew-member">
+                        <div class="crew-avatar">🔍</div>
+                        <div class="crew-info">
+                            <h4>Nova</h4>
+                            <span class="badge badge-secondary">Market Research Agent</span>
+                            <p>Scraping search terms to uncover high-margin winning products.</p>
+                        </div>
+                        <span class="member-status green">Active</span>
+                    </div>
+                    <div class="crew-member">
+                        <div class="crew-avatar">🏭</div>
+                        <div class="crew-info">
+                            <h4>Forge</h4>
+                            <span class="badge badge-secondary">Product Listing Builder</span>
+                            <p>Designing assets via Nano Banana Pro and listing them on print-on-demand networks.</p>
+                        </div>
+                        <span class="member-status green">Active</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>
