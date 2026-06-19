@@ -250,3 +250,122 @@ function incrementXP(amount) {
     
     document.getElementById("city-xp-fill").style.width = `${xp}%`;
 }
+
+// District Detail Modals
+function openDistrict(type) {
+    const title = document.getElementById("district-modal-title");
+    const body = document.getElementById("district-modal-body");
+    
+    // Close other menus first
+    closeSubmenu();
+    
+    let html = "";
+    
+    if (type === 'residential') {
+        title.innerText = "Residential District — Customer Demand";
+        html = `
+            <div class="district-modal-content">
+                <div class="district-stats-summary">
+                    <div class="d-stat-box"><label>Active Population</label><span class="text-green">${population} residents</span></div>
+                    <div class="d-stat-box"><label>Satisfaction Rating</label><span class="text-green">98.4%</span></div>
+                    <div class="d-stat-box"><label>Queries Inbox</label><span>3 pending</span></div>
+                </div>
+                
+                <h3 class="district-section-title">Active Field Agent</h3>
+                <div class="crew-member inline-member" style="margin-bottom: 20px;">
+                    <div class="crew-avatar">📨</div>
+                    <div class="crew-info">
+                        <h4>Cipher (Comms & Feedback)</h4>
+                        <span class="badge badge-primary">Customer Service Agent</span>
+                        <p>Cipher scans Gmail, social feeds, and YouTube comments to manage customer inquiries and draft replies.</p>
+                    </div>
+                </div>
+                
+                <h3 class="district-section-title">Local Task Log Lines</h3>
+                <div class="console-body console-small" style="height: 120px;">
+                    <div class="log-line system">> [19:04:12] Cipher scanned support inbox for new emails.</div>
+                    <div class="log-line success">> [19:05:01] Cipher drafted response to Emily Watson (Topic: Shipping time).</div>
+                    <div class="log-line">> [19:06:45] Cipher auto-posted Instagram comment reply: "Removable cover is 100% washing-machine safe!"</div>
+                    <div class="log-line system">> [19:10:00] Cipher synchronized customer ticket queue.</div>
+                </div>
+            </div>
+        `;
+    } else if (type === 'commercial') {
+        title.innerText = "Commercial Center — E-Commerce Shopfront";
+        html = `
+            <div class="district-modal-content">
+                <div class="district-stats-summary">
+                    <div class="d-stat-box"><label>Live Catalog</label><span>3 products online</span></div>
+                    <div class="d-stat-box"><label>Storefront Views</label><span class="text-accent">142 today</span></div>
+                    <div class="d-stat-box"><label>Conversion Rate</label><span class="text-green">3.1%</span></div>
+                </div>
+                
+                <h3 class="district-section-title">Active Field Agents</h3>
+                <div class="crew-list inline-list" style="margin-bottom: 20px; display: flex; flex-direction: column; gap: 10px;">
+                    <div class="crew-member inline-member">
+                        <div class="crew-avatar">🔍</div>
+                        <div class="crew-info">
+                            <h4>Nova (Market Research)</h4>
+                            <span class="badge badge-secondary">Research Lab</span>
+                            <p>Scrapes search trends and compiles winner summaries.</p>
+                        </div>
+                    </div>
+                    <div class="crew-member inline-member">
+                        <div class="crew-avatar">🏭</div>
+                        <div class="crew-info">
+                            <h4>Forge (Listing Builder)</h4>
+                            <span class="badge badge-secondary">Publishing Desk</span>
+                            <p>Applies canvas designs and publishes products to Etsy/Shopify.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3 class="district-section-title">Local Task Log Lines</h3>
+                <div class="console-body console-small" style="height: 120px;">
+                    <div class="log-line system">> [18:42:01] Nova crawled Etsy tag: 'calming pet bed'.</div>
+                    <div class="log-line success">> [18:43:15] Nova flagged high search volume for 'elevated cat bowl'.</div>
+                    <div class="log-line">> [18:45:00] Nova compiled research brief and forwarded payload to Forge.</div>
+                    <div class="log-line success">> [18:46:12] Forge generated mockup images using FAL.ai API.</div>
+                    <div class="log-line">> [18:47:30] Forge drafted Printify product listing & cost structures.</div>
+                    <div class="log-line system">> [18:48:00] Forge synced draft to e-commerce storefront.</div>
+                </div>
+            </div>
+        `;
+    } else if (type === 'industrial') {
+        title.innerText = "Industrial Park — Supplier & Fulfillment";
+        html = `
+            <div class="district-modal-content">
+                <div class="district-stats-summary">
+                    <div class="d-stat-box"><label>Processed Orders</label><span>${Math.floor(wholesaleCostSum / 18.50)} fulfilled</span></div>
+                    <div class="d-stat-box"><label>Line Type</label><span class="text-accent">US Special Line DDP</span></div>
+                    <div class="d-stat-box"><label>Warehouse Status</label><span class="text-green">99.7% Stocked</span></div>
+                </div>
+                
+                <h3 class="district-section-title">Active Field Agent</h3>
+                <div class="crew-member inline-member" style="margin-bottom: 20px;">
+                    <div class="crew-avatar">🧠</div>
+                    <div class="crew-info">
+                        <h4>Ultron (Main Orchestrator)</h4>
+                        <span class="badge badge-accent">Metropolis brain</span>
+                        <p>Ultron intercepts webhook signals, processes orders, and coordinates wholesale settlements with Printify and CJ APIs.</p>
+                    </div>
+                </div>
+                
+                <h3 class="district-section-title">Local Task Log Lines</h3>
+                <div class="console-body console-small" style="height: 120px;">
+                    <div class="log-line system">> [19:01:05] Ultron intercepted Stripe payment webhook.</div>
+                    <div class="log-line success">> [19:01:20] Ultron mapped shipping address payload to supplier SKU structure.</div>
+                    <div class="log-line cost">> [19:01:45] Ultron settled wholesale cost on CJ Dropshipping account.</div>
+                    <div class="log-line success">> [19:02:10] Ultron fetched shipment tracking ID and triggered confirmation email.</div>
+                </div>
+            </div>
+        `;
+    }
+    
+    body.innerHTML = html;
+    document.getElementById("districtModal").classList.add("open");
+}
+
+function closeDistrictModal() {
+    document.getElementById("districtModal").classList.remove("open");
+}

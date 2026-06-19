@@ -91,7 +91,7 @@
         <!-- Simulated Districts/Zones -->
         <div class="districts-container">
             <!-- Residential Zone (Green) - Customer Demand -->
-            <div class="district residential-zone" id="district-residential">
+            <div class="district residential-zone" id="district-residential" onclick="openDistrict('residential')">
                 <div class="district-header">Residential District</div>
                 <div class="district-body">
                     <div class="zone-building house">🏠</div>
@@ -102,7 +102,7 @@
             </div>
 
             <!-- Commercial Zone (Blue) - ZenPaws E-commerce Store -->
-            <div class="district commercial-zone" id="district-commercial">
+            <div class="district commercial-zone" id="district-commercial" onclick="openDistrict('commercial')">
                 <div class="district-header">Commercial Center</div>
                 <div class="district-body">
                     <div class="zone-building store">🏪</div>
@@ -112,7 +112,7 @@
             </div>
 
             <!-- Industrial Zone (Yellow) - Dropshipping Warehouse -->
-            <div class="district industrial-zone" id="district-industrial">
+            <div class="district industrial-zone" id="district-industrial" onclick="openDistrict('industrial')">
                 <div class="district-header">Industrial Park</div>
                 <div class="district-body">
                     <div class="zone-building factory">🏭</div>
@@ -287,6 +287,19 @@
                         <span class="member-status green">Active</span>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- District Info Modal -->
+    <div class="submenu-modal" id="districtModal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h2 id="district-modal-title">District Details</h2>
+                <button class="close-btn" onclick="closeDistrictModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="district-modal-body">
+                <!-- Dynamically filled by JS -->
             </div>
         </div>
     </div>

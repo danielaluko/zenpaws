@@ -742,3 +742,71 @@ body {
     0%, 100% { text-shadow: none; }
     50% { text-shadow: 0 0 10px var(--cs-green); }
 }
+
+/* Clickable District Modal Layout styles */
+.district {
+    cursor: pointer;
+}
+
+.district:hover {
+    box-shadow: 0 0 18px currentColor;
+    transform: scale(1.02);
+}
+
+.district-stats-summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.d-stat-box {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--cs-border-color);
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.d-stat-box label {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--cs-text-muted);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.d-stat-box span {
+    font-family: var(--font-mono);
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.district-section-title {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--cs-border-color);
+    padding-bottom: 6px;
+    color: var(--cs-text-muted);
+}
+
+.inline-member {
+    background-color: rgba(0,0,0,0.15) !important;
+    border: 1px solid rgba(255,255,255,0.05) !important;
+}
+
+.console-small {
+    background-color: #0b1717;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.05);
+    padding: 12px;
+    font-family: monospace;
+    font-size: 11px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
