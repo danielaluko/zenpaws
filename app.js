@@ -29,6 +29,11 @@ const products = [
     }
 ];
 
+// API configuration (Replace with your deployed backend URL in production)
+const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+    ? 'http://localhost:3000'
+    : 'https://your-production-backend.onrender.com';
+
 // App State
 let cart = [];
 let totalRevenue = 0;
@@ -148,13 +153,39 @@ function closeModal() {
     document.getElementById("checkout-phase-pipeline").style.display = "none";
 }
 
-function checkoutCart() {
+async function checkoutCart() {
     if (cart.length === 0) {
         alert("Please add products to your cart before checking out.");
         return;
     }
-    toggleCart(); // Close cart drawer
-    document.getElementById("checkoutModal").classList.add("open");
+    
+    logConsole("Initializing secure Stripe checkout redirect...", "system");
+    
+    try {
+        const response = await fetch(`${API_URL}/create-checkout-session`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ items: cart })
+        });
+        
+        if (!response.ok) {
+            throw new Error('Failed to create payment session.');
+        }
+        
+        const data = await response.json();
+        logConsole(`Redirecting to Stripe Session: ${data.id}`, "success");
+        
+        // Redirect customer to Stripe Checkout Page
+        window.location.href = data.url;
+    } catch (err) {
+        console.error(err);
+        logConsole("Payment server offline. Redirecting to mock simulation checkout.", "error");
+        // Fallback to local mock simulation modal if backend is offline
+        toggleCart();
+        document.getElementById("checkoutModal").classList.add("open");
+    }
 }
 
 // Trigger simulated checkout process directly

@@ -1,0 +1,19 @@
+{
+  "name": "zenpaws-brand",
+  "version": "1.0.0",
+  "description": "This repository contains the interactive prototype for the **ZenPaws** brand. It is ready for hosting on Netlify, Vercel, or GitHub Pages.",
+  "main": "fulfillment_connector.js",
+  "scripts": {
+    "start": "node fulfillment_connector.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.18.0",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "stripe": "^22.2.2"
+  }
+}

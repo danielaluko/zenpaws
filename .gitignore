@@ -1,0 +1,10 @@
+# Node dependencies
+node_modules/
+package-lock.json
+
+# Local configurations and secret keys
+.env
+.env.local
+.env.development.local
+.env.production.local
+social_config.json
